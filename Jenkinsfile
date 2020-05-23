@@ -4,7 +4,8 @@ pipeline {
     stages {
         stage('build') {
             steps {
-                echo "Hello World!"
+                MSG='Hello World!'
+                echo $MSG
             }
         }
     }
