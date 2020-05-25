@@ -13,7 +13,7 @@ pipeline {
                 withCredentials([[$class: 'VaultTokenCredentialBinding', credentialsId: 'jenkins-vault-token', vaultAddr: 'http://172.17.0.2:8200']]) {
                     sh '''
                         set +x
-                        export VALUE="$(./vault kv get -format=json secret/hello)"
+                        export VALUE=$(echo $(./vault kv get --format=json secret/hello | python -c "import sys, json; print json.load(sys.stdin)['data']['data']['foo']")
                         echo "id: ${VALUE}"
                     '''
                 }
