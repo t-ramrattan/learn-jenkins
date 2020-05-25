@@ -13,8 +13,8 @@ pipeline {
                 withCredentials([[$class: 'VaultTokenCredentialBinding', credentialsId: 'jenkins-vault-token', vaultAddr: 'https://172.17.0.2:8200']]) {
                     sh '''
                         set +x
-                        export RESP=$(./vault kv get -format=json secret/hello)
-                        echo "resp: ${RESP}"
+                        export SECRET_ID=$(./vault write -field=secret_id -f auth/approle/role/jenkins/secret-id
+                        echo "id: ${SECRET_ID}"
                     '''
                 }
             }
