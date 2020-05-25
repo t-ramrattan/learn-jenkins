@@ -8,6 +8,7 @@ pipeline {
 
     stages {
         stage('build') {
+            steps {
                 sh 'curl -o vault.zip https://releases.hashicorp.com/vault/1.4.2/vault_1.4.2_linux_amd64.zip ; yes | unzip vault.zip'
                 withCredentials([string(credentialsId: 'jenkins-vault', variable: 'ROLE_ID'),string(credentialsId: 'jenkins-vault-token', variable: 'VAULT_TOKEN')]) {
                     sh '''
