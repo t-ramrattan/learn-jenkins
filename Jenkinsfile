@@ -14,7 +14,7 @@ pipeline {
                     sh '''
                         set +x
                         export RESP=$(./vault kv get -format=json secret/hello)
-                        echo "hello world"
+                        echo "resp: ${RESP}"
                     '''
                 }
             }
